@@ -1,0 +1,70 @@
+<html>
+<head>
+  <script type="text/javascript">
+  var i=-1;
+  function add_question(){
+    i++;
+    var choices=0;
+    var question_div=document.createElement('div');
+    question_div.setAttribute("id" , i );
+    question_div.setAttribute("class" , "q");
+    var questionForm=document.createElement('form');
+    questionForm.setAttribute("id","form"+i);
+    var question=document.createElement('input');
+    question.setAttribute("type", "text");
+    question.setAttribute  ("name","q"+i);
+    var addChoice=document.createElement('input');
+    addChoice.setAttribute("type", "button");
+    addChoice.setAttribute("onclick","add_choice(this)");
+    addChoice.setAttribute("value","add choice");
+    addChoice.setAttribute("id","addChoice");
+    addChoice.setAttribute("class",i);
+    document.getElementById('survey').appendChild(question_div);
+    document.getElementById(i).appendChild(questionForm);
+    document.getElementById(i).getElementsByTagName('form')[0].appendChild(question);
+    document.getElementById(i).getElementsByTagName('form')[0].appendChild(addChoice);
+    alert(question.name)
+  }
+  function add_choice(btn){
+    var choice=document.createElement('input');
+    choice.setAttribute("type", "text");
+    choice.setAttribute("name", "item"+ btn.className);
+    //var target=document.getElementById('addChoice');
+    document.getElementById(i).getElementsByTagName('form')[0].insertBefore(choice,btn);
+    //document.getElementById(i).appendChild(choice);
+    alert(choice.name)
+    choices++;
+    alert(choices);
+  }
+  function getInputsByValue(value)
+{
+    var allInputs = document.getElementsByTagName("input");
+    var results = [];
+    for(var x=0;x<allInputs.length;x++)
+        if(allInputs[x].value == value)
+            results.push(allInputs[x]);
+    return results;
+}
+  </script>
+
+  <style>
+  .q
+  {
+      width:500px;
+      height: 200px;
+      background-color: red;
+      display:inline-block;
+
+  }
+  input{
+    display: block;
+  }
+
+
+  </style>
+</head>
+<body>
+  <div id="survey"></div>
+  <a onclick="add_question()">add new question</a>
+</body>
+</html>
